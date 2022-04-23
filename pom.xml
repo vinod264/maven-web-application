@@ -105,7 +105,7 @@
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Snapshot Nexus Repository </name>
-	      <url>http://43.204.115.32:9980/mithuntechnologies/repository/facebook-snapshot/</url>
+	      <url>http://43.204.115.32:9980/mithuntechnologies/repository/maven-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>

@@ -8,8 +8,8 @@ git branch: 'development', credentialsId: 'da17bc5a-141d-4f1e-a709-b311ad6513ff'
 stage('Build'){
 sh "${mavenHome}/bin/mvn clean package"
 }
+/*
 
-}
 
 //Execute the sonarQube Report
 stage('ExecuteSonarQubeReport'){
@@ -21,3 +21,14 @@ stage('UploadArtifactsintoNexus'){
 sh "${mavenHome}/bin/mvn deploy"
 }
 
+//Deploy Application into Tomcat Server
+stage('DeployApplicationTomcatServer'){
+sshagent(['6f8d8b07-9861-4bcf-990a-3528e0226771']) {
+  sh "scp -o StrictHostkeyChecking=no target/maven-web-application.war ec2-user@13.233.0.92:/opt/apache-tomcat-9.0.62/webapps"
+}
+
+}
+*/
+  
+} 
+  

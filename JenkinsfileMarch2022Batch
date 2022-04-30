@@ -62,7 +62,9 @@ sshagent(['6f8d8b07-9861-4bcf-990a-3528e0226771']) {
 
 }
 */
+Try{
 }//Try Closing
+
 catch(e){
 currentBuild.result = "FAILED"
 }

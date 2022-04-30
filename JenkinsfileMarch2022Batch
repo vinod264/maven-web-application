@@ -42,7 +42,8 @@ try{
 sendSlackNotifications("STARTED")
 //Get the code from Github Repo
 stage('CheckoutCode'){
-git branch: 'development', credentialsId: '33f0a274-7b60-4d55-a160-8a798fabd978', url: 'https://github.com/Bhavitha209/maven-web-application.git'
+
+git branch: 'development', credentialsId: 'da17bc5a-141d-4f1e-a709-b311ad6513ff', url: 'https://github.com/vinod264/maven-web-application.git'
 }
 //Do the build by using Maven Build tool
 stage('Build'){

@@ -27,17 +27,22 @@ def sendSlackNotifications(String buildStatus = 'STARTED') {
 
 node{
 
-
-
-properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
+    echo "Job Name is:  ${env.JOB_NAME}"
+    echo "Node Name is: ${env.NODE_NAME}"
+    
+    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('    *')])])
+  
+  
 
 
 def mavenHome = tool name: 'maven3.8.5'
 
-Try{
+try{
+
+sendSlackNotifications("STARTED")
 //Get the code from Github Repo
 stage('CheckoutCode'){
-git branch: 'development', credentialsId: 'da17bc5a-141d-4f1e-a709-b311ad6513ff', url: 'https://github.com/vinod264/maven-web-application.git'
+git branch: 'development', credentialsId: '33f0a274-7b60-4d55-a160-8a798fabd978', url: 'https://github.com/Bhavitha209/maven-web-application.git'
 }
 //Do the build by using Maven Build tool
 stage('Build'){
@@ -64,16 +69,12 @@ sshagent(['6f8d8b07-9861-4bcf-990a-3528e0226771']) {
 
 }
 */
-Try{
 }//Try Closing
-
-catch(e){
-currentBuild.result = "FAILED"
-}
-finally{
+    catch(e){
+    currentBuild.result = "FAILED"
+    }
+    finally{
     
-sendSlackNotifications(currentBuild.result)
-}
-}//Node Closing
-
-  
+    sendSlackNotifications(currentBuild.result)
+   }
+   }//Node Closing
